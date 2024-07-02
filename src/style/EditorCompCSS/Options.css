@@ -1,0 +1,14 @@
+.options{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: aqua;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.OptionDiv{
+    background-color: blanchedalmond;
+    /* display: inline-block; */
+    width: fit-content;
+}
