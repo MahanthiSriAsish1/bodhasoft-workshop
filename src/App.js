@@ -1,9 +1,13 @@
 import './App.css';
-import LoginPage from './pages/LoginPages/LoginPage';
+import Dashboard from './pages/DashboardPage/Dashboard';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   return (
-    <LoginPage />
+    <div>
+      {/* <LoginPage /> */}
+      <Dashboard />
+    </div>
   );
 }
 
