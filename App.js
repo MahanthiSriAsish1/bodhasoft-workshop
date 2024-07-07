@@ -1,125 +1,143 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Alert } from 'react-native';
 
 const App = () => {
-  // State to track the visibility of the answer
-  const [showAnswer, setShowAnswer] = useState(true);
+  const [showOtpField, setShowOtpField] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [name, setName] = useState('');
+  const [instituteName, setInstituteName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
 
-  // Function to toggle the visibility of the answer
-  const toggleAnswerVisibility = () => {
-    setShowAnswer(!showAnswer);
+  const handleLogin = () => {
+    if (!name || !instituteName || !mobileNumber) {
+      Alert.alert('Error', 'Please fill out all fields');
+    } else {
+      setShowOtpField(true);
+    }
+  };
+
+  const handleOtpSubmit = () => {
+    if (otp === '123456') { // Assuming '123456' is the correct OTP for demo purposes
+      Alert.alert('Success', 'You are now logged in!');
+      // Here, you can add further actions such as navigating to another screen
+    } else {
+      Alert.alert('Error', 'Please enter a valid OTP');
+    }
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Header Section */}
-        <View style={styles.header}>
-          <Text style={styles.headerText}>HRQuestions</Text>
-          <View style={styles.headerIcons}>
-            {/* Placeholder for icons */}
-            <Text style={styles.icon}>🔔</Text>
-            <Text style={styles.icon}>🏠</Text>
-          </View>
-        </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.heading}>BodhaSoft</Text>
 
-        {/* Question and Answer Section */}
-        <View style={styles.questionContainer}>
-          <Text style={styles.questionText}>what is exception handling?</Text>
-          {showAnswer && (
-            <Text style={styles.answerText}>
-              Exception handling is a programming concept used to manage and respond to runtime errors.
-            </Text>
+        <View style={styles.loginContainer}>
+          <Text style={styles.loginHeading}>Login</Text>
+        
+          {!showOtpField && (
+            <>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your name"
+                placeholderTextColor="#999"
+                value={name}
+                onChangeText={setName}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your institute name"
+                placeholderTextColor="#999"
+                value={instituteName}
+                onChangeText={setInstituteName}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your mobile number"
+                placeholderTextColor="#999"
+                keyboardType="phone-pad"
+                value={mobileNumber}
+                onChangeText={setMobileNumber}
+              />
+              <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                <Text style={styles.loginButtonText}>Login ➜</Text>
+              </TouchableOpacity>
+            </>
           )}
-          {/* Button to toggle the visibility of the answer */}
-          <TouchableOpacity style={styles.button} onPress={toggleAnswerVisibility}>
-            <Text style={styles.buttonText}>{showAnswer ? 'Hide Answer' : 'Show Answer'}</Text>
-          </TouchableOpacity>
-          {/* Button for the next question */}
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Next Question</Text>
-          </TouchableOpacity>
-        </View>
 
-        {/* Footer Section */}
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>FAQs</Text>
-          <Text style={styles.footerText}>Blogs</Text>
-          <Text style={styles.footerText}>Placements</Text>
-          <Text style={styles.footerText}>Contact Us</Text>
-          <Text style={styles.footerText}>About Us</Text>
+          {showOtpField && (
+            <>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your OTP"
+                placeholderTextColor="#999"
+                keyboardType="numeric"
+                value={otp}
+                onChangeText={setOtp}
+              />
+              <TouchableOpacity style={styles.loginButton} onPress={handleOtpSubmit}>
+                <Text style={styles.loginButtonText}>Submit OTP ➜</Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1, // Ensures the SafeAreaView takes up the full height of the screen
-    backgroundColor: '#fff', // Background color of the SafeAreaView
+    flex: 1,
+    backgroundColor: '#fff',
   },
   container: {
-    flex: 1, // Ensures the container takes up the full height of the SafeAreaView
-    justifyContent: 'space-between', // Distributes space between child elements
+    alignItems: 'center',
+    padding: 20,
   },
-  header: {
-    flexDirection: 'row', // Arranges child elements in a row
-    justifyContent: 'space-between', // Distributes space between child elements in the header
-    alignItems: 'center', // Aligns child elements in the center vertically
-    backgroundColor: '#d633ff', // Background color of the header
-    padding: 10, // Padding inside the header
+  heading: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#A020F0',
+    marginVertical: 20,
   },
-  headerText: {
-    fontSize: 20, // Font size of the header text
-    color: '#fff', // Color of the header text
+  loginContainer: {
+    width: '100%',
+    backgroundColor: '#F0E6FF',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
   },
-  headerIcons: {
-    flexDirection: 'row', // Arranges icons in a row
+  loginHeading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
-  icon: {
-    fontSize: 24, // Font size of the icons
-    color: '#fff', // Color of the icons
-    marginLeft: 10, // Left margin for spacing between icons
+  accountText: {
+    flexDirection: 'row',
+    marginBottom: 20,
   },
-  questionContainer: {
-    backgroundColor: '#f2e4ff', // Background color of the question container
-    padding: 20, // Padding inside the question container
-    margin: 20, // Margin outside the question container
-    borderRadius: 10, // Rounded corners for the question container
-    alignItems: 'center', // Aligns child elements in the center horizontally
+  createAccountText: {
+    color: '#A020F0',
+    textDecorationLine: 'underline',
   },
-  questionText: {
-    fontSize: 18, // Font size of the question text
-    marginBottom: 20, // Margin below the question text
-    textAlign: 'center', // Centers the text horizontally
+  input: {
+    width: '100%',
+    padding: 15,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    borderColor: '#A020F0',
+    borderWidth: 1,
+    marginBottom: 10,
   },
-  answerText: {
-    fontSize: 16, // Font size of the answer text
-    marginBottom: 20, // Margin below the answer text
-    textAlign: 'center', // Centers the text horizontally
+  loginButton: {
+    backgroundColor: '#A020F0',
+    paddingVertical: 15,
+    paddingHorizontal: 50,
+    borderRadius: 10,
+    marginTop: 10,
   },
-  button: {
-    backgroundColor: '#a13bc2', // Background color of the buttons
-    padding: 15, // Padding inside the buttons
-    borderRadius: 10, // Rounded corners for the buttons
-    alignItems: 'center', // Aligns text in the center horizontally
-    marginBottom: 10, // Margin below the buttons
-    width: '100%', // Full width of the container
-  },
-  buttonText: {
-    color: '#fff', // Color of the button text
-    fontSize: 16, // Font size of the button text
-  },
-  footer: {
-    flexDirection: 'row', // Arranges child elements in a row
-    justifyContent: 'space-around', // Distributes space between child elements in the footer
-    backgroundColor: '#d633ff', // Background color of the footer
-    padding: 10, // Padding inside the footer
-  },
-  footerText: {
-    color: '#fff', // Color of the footer text
-    fontSize: 14, // Font size of the footer text
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 
