@@ -1,0 +1,130 @@
+.box2{
+    background-color: black;
+    height: 100vh;
+    width: 50%;
+    border-radius: 5px;
+    padding: 15px;
+   
+}
+.box1 {
+    max-height: 100vh; /* Adjust height as needed */
+    overflow-y: auto;
+    padding-right: 10px;
+    width: 50%;
+}
+.Container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.modules{
+    width: 60%;
+    margin: 15px;
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.427);
+    border-radius: 10px;
+}
+#unlock{
+    width:100%;
+    background-color:blueviolet;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.unlock-button{
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    align-items: center;
+    align-content: center;
+}
+.unlock-bottontext{
+    align-content: center;
+    align-items: center;
+}
+.module-text{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.497);
+}
+.box2-head{
+    display: flex;
+    justify-content: space-between;
+}
+.runbutton{
+    background-color: blueviolet;
+    width: 100px;
+    color: white;
+    font-size: 20px;
+    border-radius: 8px;
+}
+.compiler-heading{
+  color: white;
+}
+.coding-pannel{
+    background-color: rgba(245, 245, 245, 0.23);
+    width: 100%;
+    height: 75vh;
+    border-radius: 10px;
+   margin-top: 10px;
+   padding: 10px;
+   color: white;
+   font-weight: lighter;
+   font-family: 'Cascadia Code';
+}
+.option{
+    width: 380px;
+   text-align: left;
+   padding: 5px;
+   font-size: 13px;
+   
+}
+li.module-piece{
+    text-decoration: none;
+}
+.print-module-button{
+    width: 100%;
+    background-color: white;
+    color: black;
+    border-width: 0px;
+    border-radius: 10px;
+    height: 80px;
+    border-style: solid;
+    font-size: 20px;
+    font-weight: bold;
+    /* padding: 10px; */
+    color: rgba(0, 0, 0, 0.497);
+}
+@media only screen and (max-width: 800px) {
+    .Container{
+        flex-direction: column;
+    }
+    .box1{
+        width: 100%;
+        height: 700px;
+    }
+    .modules{
+        width: 70%;
+    }
+    .box2{
+        height: 700px;
+        width: 95%;
+        margin: 20px;
+       
+    }
+    .box2-head{
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+@media only screen and (max-width: 450px) {
+
+    .box1{
+        width: 100%;
+
+        margin: auto;
+    }
+    .modules{
+        width: 95%;
+    }
+}
