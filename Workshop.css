@@ -1,31 +1,34 @@
 .box2{
-    background-color: black;
-    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.416);
+    height: 90vh;
     width: 50%;
     border-radius: 5px;
     padding: 15px;
+    overflow-y: auto;
    
 }
 .box1 {
-    max-height: 100vh; /* Adjust height as needed */
+    max-height: 90vh; /* Adjust height as needed */
     overflow-y: auto;
-    padding-right: 10px;
+    /* padding-right: 10px; */
     width: 50%;
 }
 .Container{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+   
 }
 .modules{
-    width: 60%;
+    width: 90%;
     margin: 15px;
     box-shadow: 0 0 5px rgba(128, 128, 128, 0.427);
     border-radius: 10px;
 }
 #unlock{
     width:100%;
-    background-color:blueviolet;
+    background: linear-gradient(45deg, #6238fb, #8a36f5);
+    /* background: linear-gradient(to bottom right, #6838fadf, #7538f9dc, #A07DDD); */
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -51,25 +54,48 @@
     justify-content: space-between;
 }
 .runbutton{
-    background-color: blueviolet;
+    background-color: #7A37F7;
     width: 100px;
     color: white;
     font-size: 20px;
+    border-width: 0px;
     border-radius: 8px;
+    justify-content: right;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
 }
 .compiler-heading{
-  color: white;
+  color: black;
+ 
 }
 .coding-pannel{
-    background-color: rgba(245, 245, 245, 0.23);
+    background-color:rgba(245, 245, 245, 0.759);
     width: 100%;
-    height: 75vh;
+    height: 71vh;
     border-radius: 10px;
    margin-top: 10px;
    padding: 10px;
    color: white;
    font-weight: lighter;
    font-family: 'Cascadia Code';
+   color: black;
+   overflow-x: auto;
+   overflow-y: auto;
+}
+.output-pannel{
+    
+        background-color: rgba(0, 0, 0, 0.803);
+        width: 100%;
+        height: 35vh;
+        border-radius: 10px;
+       margin-top: 10px;
+       padding: 10px;
+       color: white;
+       font-weight: lighter;
+       font-family: 'Cascadia Code';
+       overflow-y: auto;
+  
 }
 .option{
     width: 380px;
@@ -86,11 +112,14 @@ li.module-piece{
     background-color: white;
     color: black;
     border-width: 0px;
+    /* border-color: #9812ff35; */
     border-radius: 10px;
     height: 80px;
     border-style: solid;
     font-size: 20px;
+    overflow-y: auto;
     font-weight: bold;
+
     /* padding: 10px; */
     color: rgba(0, 0, 0, 0.497);
 }
@@ -103,13 +132,14 @@ li.module-piece{
         height: 700px;
     }
     .modules{
-        width: 70%;
+        width: 95%;
     }
     .box2{
         height: 700px;
         width: 95%;
         margin: 20px;
-       
+        overflow-y: auto;
+   
     }
     .box2-head{
         display: flex;
@@ -117,14 +147,96 @@ li.module-piece{
     }
 
 }
+
 @media only screen and (max-width: 450px) {
+.box2{
+    margin: 0px;
+    width: 100%;
+}
 
     .box1{
         width: 100%;
-
-        margin: auto;
+        margin: 0px;
     }
     .modules{
         width: 95%;
+        margin: 15px 0px;
     }
 }
+/*              navbar styles                 */
+
+.Navbar {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 10vh;
+  }
+  
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  
+  .username,
+  .logo {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: blueviolet;
+  }
+  
+  .bodhasoft-name {
+    padding-left: 10px;
+    font-size: 35px;
+    color: rgba(156, 67, 240, 0.974);
+    text-shadow: 2px 1px purple;
+  }
+  
+  .username-text {
+    font-size: 20px;
+    color: black;
+    padding-top: 10px;
+    padding-left: 3px;
+   
+    
+  }
+  
+  .user-icon {
+    color: rgba(0, 0, 0, 0.408);
+    padding: 5px;
+    border-radius: 50px;
+    align-items: center;
+    align-content: center;
+    border-color: deeppink;
+    border-width: 2px;
+    border-style: solid;
+    position: relative;
+    bottom: 2.5px;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .Navbar {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .logo,
+    .username {
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+  
+    .bodhasoft-name {
+      font-size: 35px;
+      font-weight: bold;
+     
+    }
+  
+    .username-text {
+      font-size: 16px;
+    }
+  }
