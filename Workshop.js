@@ -97,6 +97,9 @@ export default function Workshop() {
     // State to hold the displayed answers (code snippets)
     const [displayedAnswers, setDisplayedAnswers] = useState([]);
 
+    // State to control the visibility of the output panel
+    const [showOutputPanel, setShowOutputPanel] = useState(false);
+
     // Fetch questions from the backend when the component mounts
     useEffect(() => {
         axios.get('https://example.com/api/questions')
@@ -145,6 +148,11 @@ export default function Workshop() {
             const selectedQuestion = questions.find(q => q.id === questionId);
             setDisplayedAnswers(prev => [...prev, { id: selectedQuestion.id, code: selectedQuestion.code }]);
         }
+    };
+
+    // Function to handle the "Run" button click
+    const handleRunClick = () => {
+        setShowOutputPanel(true);
     };
 
     return (
@@ -225,12 +233,16 @@ export default function Workshop() {
                     </div>
                     <br />
                     
-                    <button className='runbutton'>Run</button>
-                    <h2  style={{ color: "#7A37F7" }}>Output</h2>
-                
-                    <div className='output-pannel'>
-                        {/* Write output logic here */}
-                    </div>
+                    <button className='runbutton' onClick={handleRunClick}>Run</button>
+                    
+                    {showOutputPanel && (
+                        <Fragment>
+                            <h2 style={{ color: "#7A37F7" }}>Output</h2>
+                            <div className='output-pannel'>
+                                {/* Write output logic here */}
+                            </div>
+                        </Fragment>
+                    )}
                 </div>
             </div>
         </Fragment>
