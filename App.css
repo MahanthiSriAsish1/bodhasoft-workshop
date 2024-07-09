@@ -65,7 +65,10 @@
 }
 
 .otpInput {
-  border-color: #F333FF;
+  width: calc(100% - 30px);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-color: #A020F0;
 }
 
 .loginButton {
