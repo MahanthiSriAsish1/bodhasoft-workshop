@@ -32,25 +32,28 @@ const App = () => {
 
         <div className="loginContainer">
           <h2 className="loginHeading">Login</h2>
-
+          
           {!showOtpField && (
             <>
               <input
-                className="input"
+                className="input nameInput"
                 type="text"
                 placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <input
-                className="input"
-                type="text"
-                placeholder="Enter your institute name"
+              <select
+                className="input instituteInput"
                 value={instituteName}
                 onChange={(e) => setInstituteName(e.target.value)}
-              />
+              >
+                <option value="" disabled>Select your institute name</option>
+                <option value="SVCE">SVCE</option>
+                <option value="Chadalawada">Chadalawada</option>
+                <option value="SITAMS">SITAMS</option>
+              </select>
               <input
-                className="input"
+                className="input mobileInput"
                 type="tel"
                 placeholder="Enter your mobile number"
                 value={mobileNumber}
@@ -65,7 +68,7 @@ const App = () => {
           {showOtpField && (
             <>
               <input
-                className="input"
+                className="input otpInput"
                 type="text"
                 placeholder="Enter your OTP"
                 value={otp}

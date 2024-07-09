@@ -25,6 +25,7 @@
   border-radius: 10px;
   padding: 20px;
   margin: 0 auto;
+  align-items: center;
 }
 
 .loginHeading {
@@ -34,12 +35,37 @@
 }
 
 .input {
-  width: calc(100% - 30px);
+  width: 100%;
   padding: 15px;
   margin-bottom: 10px;
   background-color: #fff;
   border: 1px solid #A020F0;
   border-radius: 10px;
+}
+
+.nameInput {
+  width: calc(100% - 30px);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-color: #A020F0;
+}
+
+.instituteInput {
+  width: calc(100%);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-color: #A020F0;
+}
+
+.mobileInput {
+  width: calc(100% - 30px);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-color: #A020F0;
+}
+
+.otpInput {
+  border-color: #F333FF;
 }
 
 .loginButton {
