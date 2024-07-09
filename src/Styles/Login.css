@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.safeArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+  padding: 0 10px; /* Added padding to ensure no overflow */
+}
+
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%; /* Ensure container takes full width */
+  max-width: 50%; /* Set a max-width for larger screens */
+  height: 100%;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 2.5rem; /* Adjusted to use rem for scalability */
+  font-weight: bold;
+  color: #A020F0;
+  margin: 20px 0;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 75%;
+  height: 70%;
+  background-color: #F0E6FF;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.loginHeading {
+  font-size: 1.5rem; /* Adjusted to use rem for scalability */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: calc(100% - 30px);
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #A020F0;
+  border-radius: 10px;
+}
+
+.loginButton {
+  background-color: #A020F0;
+  color: #fff;
+  padding: 15px 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.loginButton:hover {
+  background-color: #8b1ac7;
+}
+
+.resendOtp {
+  color: black;
+  cursor: pointer;
+  margin-top: -25px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.resendOtp:hover {
+  color: blue;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    max-width: 80%; /* Adjust container width for tablets */
+  }
+
+  .loginContainer {
+    width: 90%;
+    height: auto; /* Adjust height for better fit */
+    padding: 15px; /* Adjust padding for better fit */
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+  
+  .loginHeading {
+    font-size: 1.25rem;
+  }
+  
+  .loginButton {
+    padding: 12px 40px;
+  }
+  
+  .resendOtp {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 95%; /* Adjust container width for mobile devices */
+  }
+
+  .loginContainer {
+    width: 100%; /* Full width for small screens */
+    height: auto; /* Auto height to fit content */
+    padding: 10px; /* Adjust padding for better fit */
+  }
+
+  .heading {
+    font-size: 1.75rem;
+  }
+  
+  .loginHeading {
+    font-size: 1rem;
+  }
+  
+  .loginButton {
+    padding: 10px 30px;
+  }
+  
+  .resendOtp {
+    font-size: 0.7rem;
+  }
+}

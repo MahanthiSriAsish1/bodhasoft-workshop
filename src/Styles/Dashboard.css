@@ -1,0 +1,59 @@
+.d-box {
+  height: 200px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 30%;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: rgba(245, 245, 245, 0.448);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.d-container {
+  margin: 0;
+  padding: 0;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgba(137, 43, 226, 0.038);
+}
+.d-head {
+  font-size: 25px;
+  text-align: center;
+}
+.d-icon {
+  font-size: 50px;
+  position: relative;
+  top: -20px;
+  background-color: blueviolet;
+  padding: 10px;
+  /* color: rgba(0, 0, 0, 0.667); */
+  color: rgb(14, 9, 49);
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
+:hover.d-box {
+  background-color: blueviolet;
+  transition: 0.2s;
+  .d-icon {
+    font-size: 30px;
+    background-color: whitesmoke;
+    padding-right: 0px;
+    transition: 0.5s;
+  }
+  .d-head {
+    color: whitesmoke;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .d-container {
+    flex-direction: column;
+  }
+  .d-box {
+    width: 90%;
+  }
+}

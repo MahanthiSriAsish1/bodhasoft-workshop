@@ -1,0 +1,282 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Container styles */
+.safeArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+  padding: 0 10px; /* Added padding to ensure no overflow */
+}
+
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+/* Box styles */
+.box1 {
+  max-height: 90vh; /* Adjust height as needed */
+  overflow-y: auto;
+  width: 50%;
+}
+
+.box2 {
+  background-color: rgba(128, 128, 128, 0.416);
+  height: 90vh;
+  width: 50%;
+  border-radius: 5px;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+/* Module styles */
+.modules {
+  width: 90%;
+  margin: 15px;
+  box-shadow: 0 0 5px rgba(128, 128, 128, 0.427);
+  border-radius: 10px;
+}
+
+#unlock {
+  width: 100%;
+  background: linear-gradient(45deg, #6238fb, #8a36f5);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.unlock-button {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  align-items: center;
+  align-content: center;
+}
+
+.unlock-bottontext {
+  align-content: center;
+  align-items: center;
+}
+
+.module-text {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  color: rgba(0, 0, 0, 0.497);
+}
+
+.box2-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.runbutton {
+  background-color: #7a37f7;
+  width: 100px;
+  color: white;
+  font-size: 20px;
+  border-width: 0px;
+  border-radius: 8px;
+  justify-content: right;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.compiler-heading {
+  color: black;
+}
+
+.coding-pannel {
+  background-color: rgba(245, 245, 245, 0.759);
+  width: 100%;
+  height: 71vh;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  color: white;
+  font-weight: lighter;
+  font-family: "Cascadia Code";
+  color: black;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.output-pannel {
+  background-color: rgba(0, 0, 0, 0.803);
+  width: 100%;
+  height: 35vh;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  color: white;
+  font-weight: lighter;
+  font-family: "Cascadia Code";
+  overflow-y: auto;
+}
+
+.option {
+  width: 380px;
+  text-align: left;
+  padding: 5px;
+  font-size: 13px;
+}
+
+li.module-piece {
+  text-decoration: none;
+}
+
+.print-module-button {
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-width: 0px;
+  border-radius: 10px;
+  height: 80px;
+  border-style: solid;
+  font-size: 20px;
+  overflow-y: hidden;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.497);
+}
+
+/* Media Queries for Responsiveness */
+@media only screen and (max-width: 800px) {
+  .Container {
+    flex-direction: column;
+  }
+
+  .box1 {
+    width: 100%;
+    height: 700px;
+  }
+
+  .box2 {
+    height: 700px;
+    width: 95%;
+    margin: 20px;
+    overflow-y: auto;
+  }
+
+  .modules {
+    width: 95%;
+  }
+
+  .box2-head {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .box1,
+  .box2 {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .modules {
+    width: 95%;
+    margin: 15px 0px;
+  }
+}
+
+/* Navbar styles */
+.Navbar {
+  background-color: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 10vh;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.username,
+.logo {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  color: blueviolet;
+}
+
+.bodhasoft-name {
+  padding-left: 10px;
+  font-size: 35px;
+  color: rgba(156, 67, 240, 0.974);
+  text-shadow: 2px 1px purple;
+}
+
+.username-text {
+  font-size: 20px;
+  color: black;
+  padding-top: 10px;
+  padding-left: 3px;
+}
+
+.user-icon {
+  color: rgba(0, 0, 0, 0.408);
+  padding: 5px;
+  border-radius: 50px;
+  align-items: center;
+  align-content: center;
+  border-color: deeppink;
+  border-width: 2px;
+  border-style: solid;
+  position: relative;
+  bottom: 2.5px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .Navbar {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .logo,
+  .username {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .bodhasoft-name {
+    padding-top: 13px;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .username-text {
+    font-size: 16px;
+  }
+}
+
+/* Media query to hide username text on smaller screens */
+@media (max-width: 480px) {
+  .username-text {
+    display: none;
+  }
+
+  .user-icon{
+    /* display: none; */
+    visibility: hidden;
+  }
+}
