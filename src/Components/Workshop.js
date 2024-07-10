@@ -14,6 +14,7 @@ import {
 import '../Styles/Workshop.css';
 import Navbar from '../Components/Navbar';
 import { Editor } from '@monaco-editor/react';
+import { executeCode } from '../service/pistonService/pistonService';
 
 export default function Workshop() {
     const [basicModal, setBasicModal] = useState(false);
@@ -56,9 +57,9 @@ export default function Workshop() {
         }
     ]);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(codeValue);
-    },[codeValue])
+    }, [codeValue])
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
 
@@ -75,6 +76,10 @@ export default function Workshop() {
     const [displayedAnswers, setDisplayedAnswers] = useState([]);
 
     const [showOutputPanel, setShowOutputPanel] = useState(false);
+
+    const [language, setLanguage] = useState('c')
+
+    const [output, setOutput] = useState('')
 
     // useEffect(() => {
     //     axios.get('https://example.com/api/questions')
@@ -120,8 +125,14 @@ export default function Workshop() {
         }
     };
 
-    const handleRunClick = () => {
-        setShowOutputPanel(true);
+    const handleRunClick = async() => {
+        try {
+            const result = await executeCode( language, codeValue);
+            setShowOutputPanel(true);
+            setOutput(result);
+        } catch (error) {
+            console.error();
+        }
     };
 
     return (
@@ -205,7 +216,7 @@ export default function Workshop() {
                             value={codeValue}
                             options={{
                                 selectOnLineNumbers: true
-                              }}
+                            }}
                             onChange={(newValue) => setCodeValue(newValue)}
                         />
                     </div>
@@ -217,7 +228,7 @@ export default function Workshop() {
                         <Fragment>
                             <h2 style={{ color: "#7A37F7" }}>Output</h2>
                             <div className='output-pannel'>
-                                {/* Write output logic here */}
+                                {output}
                             </div>
                         </Fragment>
                     )}

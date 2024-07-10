@@ -1,18 +1,29 @@
 // src/pistonService.js
 import axios from 'axios';
+import { runtimeService } from './runtimeService';
 
 const PISTON_API_URL = 'https://emkc.org/api/v2/piston/execute';
 
-export const executeCode = async (language, version, code) => {
+export const executeCode = async (language, code) => {
   try {
-    const response = await axios.post(PISTON_API_URL, {
+    // Fetch runtime information
+    const { version, alias } = await runtimeService({ language });
+
+    // Construct payload for the POST request
+    const payload = {
       language: language,
       version: version,
-      files: [{ name: 'main', content: code }]
-    });
-    return response.data;
+      files: [{ name: `main.${alias || 'txt'}`, content: code }]
+    };
+
+    // Send POST request to PISTON API
+    const response = await axios.post(PISTON_API_URL, payload);
+
+    // Return output from the run
+    return response.run.output;
   } catch (error) {
+    // Handle and log errors
     console.error('Error executing code:', error);
-    throw error;
+    throw error; // Rethrow the error to propagate it to the caller
   }
 };

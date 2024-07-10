@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import sendOtp from '../service/loginService/sendOtpService'
 import verifyOtp from '../service/loginService/verifyOtpservice'
 import "../Styles/Login.css"
+import { sendDetails } from '../service/loginService/Details';
 
 const Login = ({ setAuthentication }) => {
   const [showOtpField, setShowOtpField] = useState(false);
@@ -31,14 +32,30 @@ const Login = ({ setAuthentication }) => {
       alert('Please fill out all fields');
     } else {
       try {
-        const formattednumber = "+91" + mobileNumber
-        const confirmation = await sendOtp(formattednumber);
-        alert('OTP Sent')
-        // console.log('OTP confirmation:', confirmation);
-        setConfirmationResult(confirmation);
-        setShowOtpField(true);
+        const data = {
+          userName: name,
+          institution: instituteName,
+          phone: mobileNumber,
+        };
+
+        try {
+          await sendDetails(data);
+        } catch (error) {
+          console.error('Error sending details:', error);
+          return; // Exit if sending details fails
+        }
+
+        try {
+          const formattedNumber = "+91" + mobileNumber;
+          const confirmation = await sendOtp(formattedNumber);
+          alert('OTP Sent');
+          setConfirmationResult(confirmation);
+          setShowOtpField(true);
+        } catch (error) {
+          console.error('Error sending OTP:', error);
+        }
       } catch (error) {
-        console.error('Error sending OTP:', error);
+        console.error('Unexpected error:', error);
       }
     }
   };
