@@ -49,6 +49,12 @@
   }
 }
 
+.disabled {
+  opacity: 0.5; /* Example: reduce opacity to indicate disabled state */
+  pointer-events: none; /* Prevent click events */
+  cursor: not-allowed; /* Change cursor to indicate not clickable */
+}
+
 @media only screen and (max-width: 800px) {
   .d-container {
     flex-direction: column;

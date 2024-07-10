@@ -15,6 +15,7 @@ import '../Styles/Workshop.css';
 import Navbar from '../Components/Navbar';
 import { Editor } from '@monaco-editor/react';
 import { executeCode } from '../service/pistonService/pistonService';
+import { getQuestions } from '../service/MongoService/getQuestions';
 
 export default function Workshop() {
     const [basicModal, setBasicModal] = useState(false);
@@ -57,10 +58,6 @@ export default function Workshop() {
         }
     ]);
 
-    useEffect(() => {
-        console.log(codeValue);
-    }, [codeValue])
-
     const [currentQuestion, setCurrentQuestion] = useState(null);
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -81,14 +78,15 @@ export default function Workshop() {
 
     const [output, setOutput] = useState('')
 
+    const [lockStatus, setLockStatus] = useState(false);
+
     // useEffect(() => {
-    //     axios.get('https://example.com/api/questions')
-    //         .then(response => {
-    //             setQuestions(response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching questions:', error);
-    //         });
+    //     try {
+    //         const questions = getQuestions();
+    //         setQuestions(questions);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
     // }, []);
 
     const toggleOpen = (questionIndex) => {
@@ -125,9 +123,9 @@ export default function Workshop() {
         }
     };
 
-    const handleRunClick = async() => {
+    const handleRunClick = async () => {
         try {
-            const result = await executeCode( language, codeValue);
+            const result = await executeCode(language, codeValue);
             setShowOutputPanel(true);
             setOutput(result);
         } catch (error) {
@@ -154,7 +152,7 @@ export default function Workshop() {
                                     // Show unlock button if question is not answered
                                     <>
                                         <section className='module-text'>Module {question.id}</section>
-                                        <MDBBtn onClick={() => toggleOpen(index)} id='unlock'>
+                                        <MDBBtn onClick={() => toggleOpen(index)} id='unlock' disabled={lockStatus}>
                                             <div className='unlock-button'>
                                                 <section className='unlock-bottontext'>unlock</section>
                                                 <MDBIcon fas icon="unlock" />
@@ -228,7 +226,9 @@ export default function Workshop() {
                         <Fragment>
                             <h2 style={{ color: "#7A37F7" }}>Output</h2>
                             <div className='output-pannel'>
-                                {output}
+                                <pre className='output-content'>
+                                    {output}
+                                </pre>
                             </div>
                         </Fragment>
                     )}

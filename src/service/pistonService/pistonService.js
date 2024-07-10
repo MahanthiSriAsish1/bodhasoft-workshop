@@ -18,9 +18,7 @@ export const executeCode = async (language, code) => {
 
     // Send POST request to PISTON API
     const response = await axios.post(PISTON_API_URL, payload);
-
-    // Return output from the run
-    return response.run.output;
+    return response.data.run.output
   } catch (error) {
     // Handle and log errors
     console.error('Error executing code:', error);
