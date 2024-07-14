@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #2e2e2e;
 }
 
 .container {
@@ -11,21 +11,14 @@
   padding: 20px;
 }
 
-.heading {
-  font-size: 40px;
-  font-weight: bold;
-  color: #A020F0;
-  margin: 20px 0;
-}
-
-.loginContainer {
+.loginContainer, .otpContainer {
   width: 100%;
   max-width: 400px;
-  background-color: #e0c1f0;
+  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(241, 8, 245, 0.1);
 }
 
 .loginHeading {
@@ -33,7 +26,6 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
-
 
 .input {
   width: calc(100% - 30px);
@@ -64,38 +56,19 @@
   background-color: #8b1ac7;
 }
 
-.socialLoginContainer {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
 .socialLoginButton {
-  background-color: #e0e0e0;
-  color: #000;
+  margin-top: 10px;
+  background-color: #db4437;
+  color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 30%;
-  transition: background-color 0.3s ease;
+  width: calc(100% - 30px);
 }
 
-.socialLoginButton.google {
-  background-color: #db4437;
-  color: #fff;
-}
-
-.socialLoginButton.facebook {
-  background-color: #3b5998;
-  color: #fff;
-}
-
-.socialLoginButton.linkedin {
-  background-color: #0077b5;
-  color: #fff;
-}
-
-.socialLoginButton:hover {
-  opacity: 0.8;
+.links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }

@@ -28,13 +28,11 @@ const App = () => {
   return (
     <div className="safeArea">
       <div className="container">
-        <h1 className="heading">BodhaSoft</h1>
+        {!showOtpField ? (
+          <>
+            <div className="loginContainer">
+              <h2 className="loginHeading">Login</h2>
 
-        <div className="loginContainer">
-          <h2 className="loginHeading">Login</h2>
-         
-          {!showOtpField && (
-            <>
               <input
                 className="input"
                 type="text"
@@ -60,31 +58,31 @@ const App = () => {
                 onChange={(e) => setMobileNumber(e.target.value)}
               />
               <button className="loginButton" onClick={handleLogin}>
-                Login ➜
+                Submit
               </button>
-              <div className="socialLoginContainer">
-                <button className="socialLoginButton google">Login with Google</button>
-                <button className="socialLoginButton facebook">Login with Facebook</button>
-                <button className="socialLoginButton linkedin">Login with LinkedIn</button>
+              <button className="socialLoginButton google">
+                Sign in with Google
+              </button>
+              <div className="links">
+                <span>Sign Up</span>  <span>Forgot Password</span>
               </div>
-            </>
-          )}
-
-          {showOtpField && (
-            <>
-              <input
-                className="input"
-                type="text"
-                placeholder="Enter your OTP"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-              />
-              <button className="loginButton" onClick={handleOtpSubmit}>
-                Submit OTP ➜
-              </button>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        ) : (
+          <div className="otpContainer">
+            <h2 className="loginHeading">Enter OTP</h2>
+            <input
+              className="input"
+              type="text"
+              placeholder="Enter your OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            <button className="loginButton" onClick={handleOtpSubmit}>
+              Submit OTP
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
