@@ -10,7 +10,7 @@ const {
   updateDoc,
   deleteDoc,
 } = require("./Config/MongoConfig");
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 const server = http.createServer(app);
@@ -81,11 +81,16 @@ app.post("/api/insert", async (req, res) => {
   const newDoc = req.body;
   try {
     const result = await insertDoc("Workshop_Data", "Student_Details", newDoc);
-      res.status(201).send(result);
+    res.status(201).send(result);
   } catch (error) {
     res.status(500).send("Error inserting document: " + error.message);
   }
 });
+
+app.get("/", (req, res) => {
+  res.send("hello , i'm asish");
+});
+
 
 app.get("/api/find", async (req, res) => {
   try {
