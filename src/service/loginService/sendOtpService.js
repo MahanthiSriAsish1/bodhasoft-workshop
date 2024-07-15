@@ -2,10 +2,16 @@
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '../../config/FirebaseConfig';
 
-const sendOtp = async (phone) => {
+const sendOtp = (phone) => {
   try {
-    const recaptcha = new RecaptchaVerifier(auth,'recaptcha', {});
-    const confirmation = await signInWithPhoneNumber(auth, phone, recaptcha);
+    const recaptcha = new RecaptchaVerifier(auth,'recaptcha-container', {
+      'size':'invisible',
+      'callback': (response) => {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // console.log('reCAPTCHA resolved:', response);
+      },
+    });
+    const confirmation = signInWithPhoneNumber(auth, phone, recaptcha);
     console.log('OTP confirmation:', confirmation);
     return confirmation; // Return the confirmation object after successful OTP send
   } catch (error) {

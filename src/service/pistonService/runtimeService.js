@@ -1,7 +1,6 @@
 import axios from "axios";
 
-function getVersionAndAlias(runtimes, language,index) {
-    const runtime = runtimes.data[index].runtime
+function getVersionAndAlias(runtimes,index) {
     const version = runtimes.data[index].version
     const alias = runtimes.data[index].aliases[0]
 
@@ -12,7 +11,7 @@ export const runtimeService = async ({ language }) => {
     try {
         const runtimes = await axios.get('https://emkc.org/api/v2/piston/runtimes');
         const index = runtimes.data.findIndex(item => item.language === 'c');
-        const { version, alias } = getVersionAndAlias(runtimes, language, index);
+        const { version, alias } = getVersionAndAlias(runtimes,index);
         if (version && alias) {
             return { version, alias };
         } else {

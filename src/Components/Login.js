@@ -1,136 +1,98 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import sendOtp from '../service/loginService/sendOtpService'
-import verifyOtp from '../service/loginService/verifyOtpservice'
-import "../Styles/Login.css"
+
+import '../Styles/Login.css';
 import { sendDetails } from '../service/loginService/Details';
+import Navbar from './Navbar';
 
 const Login = ({ setAuthentication }) => {
-  const [showOtpField, setShowOtpField] = useState(false);
-  const [otp, setOtp] = useState('');
   const [name, setName] = useState('');
   const [instituteName, setInstituteName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
-  const [confirmationResult, setConfirmationResult] = useState(null);
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-
-  const handleResendOtp = async () => {
-    try {
-      const formattednumber = "+91" + mobileNumber
-      const confirmation = await sendOtp(formattednumber);
-      alert('OTP Sent')
-      // console.log('OTP confirmation:', confirmation);
-      setConfirmationResult(confirmation);
-    } catch (error) {
-      console.error('Error sending OTP:', error);
-    }
-  };
-
   const handleLogin = async () => {
-    if (!name || !instituteName || !mobileNumber) {
+    if (!name || !instituteName || !mobileNumber || !email) {
       alert('Please fill out all fields');
-    } else {
-      try {
-        const data = {
-          userName: name,
-          institution: instituteName,
-          phone: mobileNumber,
-        };
-
-        try {
-          await sendDetails(data);
-        } catch (error) {
-          console.error('Error sending details:', error);
-          return; // Exit if sending details fails
-        }
-
-        try {
-          const formattedNumber = "+91" + mobileNumber;
-          const confirmation = await sendOtp(formattedNumber);
-          alert('OTP Sent');
-          setConfirmationResult(confirmation);
-          setShowOtpField(true);
-        } catch (error) {
-          console.error('Error sending OTP:', error);
-        }
-      } catch (error) {
-        console.error('Unexpected error:', error);
-      }
-    }
-  };
-
-  const handleOtpSubmit = async () => {
-    if (!confirmationResult) {
-      console.error('No confirmation result available');
       return;
     }
+
     try {
-      await verifyOtp(confirmationResult, otp);
-      // console.log('User verified:', user);
-      setAuthentication(true);
-      navigate('/dashboard', { replace: true });
+      const data = {
+        userName: name,
+        emailId: email,
+        institution: instituteName,
+        phone: mobileNumber,
+      };
+
+      try {
+        const response = await sendDetails(data);
+        localStorage.setItem('loginAuthenticated', 'true');
+        setAuthentication(true);
+        navigate('/dashboard', { replace: true });
+        if (response === 'Document already exists') {
+          localStorage.setItem('loginAuthenticated', 'true');
+          setAuthentication(true);
+          navigate('/dashboard', { replace: true });
+        }
+      } catch (error) {
+        alert('Error sending details. Please try again.');
+      }
     } catch (error) {
-      alert(`Error verifying OTP: ${error.message}. Please re-enter or re-send OTP.`);
     }
   };
 
   return (
-    <div className="safeArea">
-      <div className="container">
+    <div className='helloworld'>
+      <div className="NavBarContainer">
+        <Navbar />
+      </div>
+      <div className="loginContainer">
+        <div className='RegistrationHeading'>
+          <h2 className="loginHeading">Let's Get You Started</h2>
+          <p className="proceed">Fill Your Details To Proceed</p>
+        </div>
+        <div>
 
-        <div className="loginContainer">
-          {/* <h2 className="loginHeading"></h2> */}
-          <h1 className="heading">Login</h1>
-
-          {!showOtpField && (
-            <>
-              <input
-                className="input"
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                className="input"
-                type="text"
-                placeholder="Enter your institute name"
-                value={instituteName}
-                onChange={(e) => setInstituteName(e.target.value)}
-              />
-              <input
-                className="input"
-                type="tel"
-                placeholder="Enter your mobile number"
-                value={mobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
-              />
-              <button className="loginButton" onClick={handleLogin}>
-                Login ➜
-              </button>
-              <div className='recaptcha'></div>
-            </>
-          )}
-
-          {showOtpField && (
-            <>
-              <input
-                className="input"
-                type="text"
-                placeholder="Enter your OTP"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-              />
-              <button className="loginButton" onClick={handleOtpSubmit}>
-                Submit OTP ➜
-              </button>
-              <div className="resendOtp" onClick={handleResendOtp} >
-                Resend OTP
-              </div>
-            </>
-          )}
-
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter your Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            className="input"
+            type="tel"
+            placeholder="Enter your mobile number"
+            value={mobileNumber}
+            onChange={(e) => setMobileNumber(e.target.value)}
+          />
+          <input
+            className="input"
+            type="email"
+            placeholder="Enter your Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <select
+            className="input select"
+            value={instituteName}
+            onChange={(e) => setInstituteName(e.target.value)}
+          >
+            <option value="" disabled>Select your institute name</option>
+            <option value="Rajeev Gandhi Memorial College of Engineering and Technology">Rajeev Gandhi Memorial College of Engineering and Technology</option>
+            <option value="Sri Venkateshwara College of Engineering">Sri Venkateshwara College of Engineering</option>
+            <option value="Chadalawada Ramanamma Engineering College">Chadalawada Ramanamma Engineering College</option>
+            <option value="Sreenivasa Institute of Technology and Management Studies">Sreenivasa Institute of Technology and Management Studies</option>
+          </select>
+          <button className="loginButton" onClick={handleLogin}>
+            Submit
+          </button>
+        </div>
+        <div className="links">
+          <span></span>
         </div>
       </div>
     </div>

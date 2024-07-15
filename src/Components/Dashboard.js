@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import '../Styles/Dashboard.css';
 import { MDBIcon } from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom';
+import downloadPDF from '../service/adminService/downloadPdf';
+import store from 'store2';
 
-const Dashboard = () => {
-  const [problemStatementDisabled, setProblemStatementDisabled] = useState(true);
-  const [workshopAreaDisabled, setWorkshopAreaDisabled] = useState(true);
-  const [workingMaterialDisabled, setWorkingMaterialDisabled] = useState(false);
+
+const Dashboard = ({ problemStatus, workshopAreaStatus }) => {
+  const [problemStatementDisabled, setProblemStatementDisabled] = useState();
+  const [workshopAreaDisabled, setWorkshopAreaDisabled] = useState();
+  const [workingMaterialDisabled, setWorkingMaterialDisabled] = useState();
+
   const navigate = useNavigate();
 
+  // Update state when props change
+  useEffect(() => {
+    setProblemStatementDisabled(problemStatus);
+    setWorkshopAreaDisabled(workshopAreaStatus);
+  }, [problemStatus, workshopAreaStatus]);
+
   const handleProblemStatementClick = () => {
-    if (!problemStatementDisabled) {
-      console.log('Problem Statement clicked!');
-      navigate('/problem-statement');
-    }
+    downloadPDF("Problem-Statement.pdf", "Problem-Statement.pdf");
   };
 
   const handleWorkshopAreaClick = () => {
@@ -22,7 +29,7 @@ const Dashboard = () => {
   };
 
   const handleWorkingMaterialClick = () => {
-    navigate('/working-material');
+    downloadPDF("Workshop Material document.pdf", "BodhaSoft Material document.pdf");
   };
 
   return (
