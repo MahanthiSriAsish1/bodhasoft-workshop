@@ -16,44 +16,64 @@ import '../Styles/Workshop.css';
 import Navbar from '../Components/Navbar';
 import { Editor } from '@monaco-editor/react';
 import { executeCode } from '../service/pistonService/pistonService';
+import store from 'store2';
 
 export default function Workshop() {
+  function setItemWithExpiry(key, value, ttl) {
+    store.set(key, value, new Date().getTime() + ttl);
+  }
+
+  function getItemWithExpiry(key) {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) {
+      return null;
+    }
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+      // If the item is expired, remove it from storage and return null
+      localStorage.removeItem(key);
+      return null;
+    }
+    return item.value;
+  }
+
   const [basicModal, setBasicModal] = useState(false);
   const [codeValue, setCodeValue] = useState('');
   const [questions, setQuestions] = useState([
     {
       id: 1,
-      question: 'What is the purpose of the "const" keyword in JavaScript?',
-      options: ['To declare a variable with a constant value', 'To create a function', 'To handle errors', 'To define a loop'],
-      correctAnswer: 0,
+      question: 'One morning Udai and Vishal were talking to each other face to face at a crossing.  If Vishal\'s shadow was exactly to the left of Udai, which direction was Udai facing?',
+      options: ['East', 'West', 'South', 'North'],
+      correctAnswer: 3,
       code: "#include <stdio.h>\n\nint main() {\n    int count = 0;\n "
     },
     {
       id: 2,
-      question: 'What is the difference between "let" and "var" in JavaScript?',
-      options: ['There is no difference', 'The scope of "let" is block-level, while the scope of "var" is function-level', 'The "let" keyword is used for declaring constants, while "var" is used for declaring variables', 'The "let" keyword is used for declaring variables, while "var" is used for declaring functions'],
-      correctAnswer: 1,
+      question: 'If A is the brother of B, B is the sister of C, and C is the father of D, how D is related to A?',
+      options: ['Brother', 'Sister', 'Nephew', 'Cannot Determine'],
+      correctAnswer: 3,
       code: "    int array[] = {60, 75, 5, 44, 30, 6};\n"
     },
     {
       id: 3,
-      question: 'What is the purpose of the "map()" method in JavaScript?',
-      options: ['To create a new array with transformed elements', 'To filter an array based on a condition', 'To perform a calculation on each element of an array', 'To sort an array in ascending order'],
-      correctAnswer: 0,
+      question: "Look at this series: 36, 34, 30, 28, 24, ... What number should come next?",
+      options: ['20', '22', '26', '23'],
+      correctAnswer: 1,
       code: "    int i;\n\n    for (i = 1; i < 5; i++) {\n"
     },
     {
       id: 4,
-      question: 'What is the purpose of the "filter()" method in JavaScript?',
-      options: ['To create a new array with elements that pass a certain condition', 'To transform each element of an array', 'To perform a calculation on each element of an array', 'To sort an array in ascending order'],
-      correctAnswer: 0,
+      question: 'Antonym of RELINQUISH ?',
+      options: ['Abdicate', 'Deny', 'Possess', 'Renounce'],
+      correctAnswer: 2,
       code: "   if (array[i] > array[i - 1] && array[i] > array[i + 1]) {\n            count++;\n        }\n"
     },
     {
       id: 5,
-      question: 'What is the purpose of the "forEach()" method in JavaScript?',
-      options: ['To iterate over each element of an array and perform a function', 'To create a new array with transformed elements', 'To filter an array based on a condition', 'To sort an array in ascending order'],
-      correctAnswer: 0,
+      question: 'Which one of the following is not a prime number?',
+      options: ['61', '91', '71', '31'],
+      correctAnswer: 1,
       code: "   }\n\n    printf(\"Count: %d\\n\", count);\n\n    return 0;\n}\n"
     }
   ]);
@@ -68,8 +88,25 @@ export default function Workshop() {
   const [showOutputPanel, setShowOutputPanel] = useState(false);
   const [language, setLanguage] = useState('c');
   const [output, setOutput] = useState('');
-  const [lockStatuses, setLockStatuses] = useState([false,false,false,false,false]);
+  const [lockStatuses, setLockStatuses] = useState([false, false, false, false, false]);
   const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const result1 = getItemWithExpiry('module1unlocked');
+    const result2 = getItemWithExpiry('module2unlocked');
+    const result3 = getItemWithExpiry('module3unlocked');
+    const result4 = getItemWithExpiry('module4unlocked');
+    const result5 = getItemWithExpiry('module5unlocked');
+
+    // Update lockStatuses state based on the retrieved values
+    setLockStatuses([
+      result1 !== null ? result1 : true,
+      result2 !== null ? result2 : true,
+      result3 !== null ? result3 : true,
+      result4 !== null ? result4 : true,
+      result5 !== null ? result5 : true,
+    ]);
+  }, []);
 
   useEffect(() => {
     if (!socket) {
@@ -90,7 +127,9 @@ export default function Workshop() {
         newStatuses[questionId - 1] = false;
         return newStatuses;
       });
+      setItemWithExpiry(`module${questionId}unlocked`, true, 86400000);
     });
+
 
     return () => {
       socket.off('unlockQuestion');
@@ -124,12 +163,16 @@ export default function Workshop() {
   };
 
   const handleShowSelectedOption = (questionId) => {
-    if (!displayedAnswers.some(answer => answer.id === questionId)) {
-      const selectedQuestion = questions.find(q => q.id === questionId);
-      setDisplayedAnswers(prev => [...prev, { id: selectedQuestion.id, code: selectedQuestion.code }]);
-      setCodeValue(prevCodeValue => prevCodeValue + '\n' + selectedQuestion.code);
-    }
+    const selectedQuestion = questions.find(q => q.id === questionId);
+    
+    // Filter out the existing entry from displayedAnswers
+    setDisplayedAnswers(prev => prev.filter(answer => answer.id !== questionId));
+    
+    // Add the selected question code to displayedAnswers and editor
+    setDisplayedAnswers(prev => [...prev, { id: selectedQuestion.id, code: selectedQuestion.code }]);
+    setCodeValue(prevCodeValue => prevCodeValue + '\n' + selectedQuestion.code);
   };
+  
 
   const handleRunClick = async () => {
     try {
@@ -178,13 +221,14 @@ export default function Workshop() {
                   <MDBBtn className='btn-close' color='none' onClick={() => setBasicModal(false)}></MDBBtn>
                 </MDBModalHeader>
                 <MDBModalBody>
-                  <p style={{justifyContent :"left"}}>{currentQuestion?.question}</p>
-                  <ul style={{paddingLeft :"0"}}>
+                  <p className='questionPara'>{currentQuestion?.question}</p>
+                  <ul style={{ paddingLeft: "0" }}>
                     {currentQuestion?.options.map((option, index) => (
                       <p key={index}>
                         <MDBBtn
                           color={selectedOption === index ? (showResult ? (isCorrect ? 'success' : 'danger') : 'purple') : 'secondary'}
                           onClick={() => handleOptionSelect(index)}
+                          className='MCQButton'
                         >
                           <section className='option' style={{ textTransform: 'none' }}> {option} </section>
                         </MDBBtn>
@@ -202,32 +246,36 @@ export default function Workshop() {
           </MDBModal>
         </div>
         <div className='box2'>
-          <div className='box2-head'>
-            <h2 className='compiler-heading'><MDBIcon fas icon="code" style={{ backgroundColor: '#7A37F7', padding: '5px' }} /> Code <span style={{ color: "#7A37F7" }}>Editor</span></h2>
+          <div>
+            <div className='box2-head'>
+              <h2 className='compiler-heading'><MDBIcon fas icon="code" style={{ backgroundColor: '#7A37F7', padding: '5px' }} /> Code <span style={{ color: "#7A37F7" }}>Editor</span></h2>
+            </div>
+            <div className='coding-pannel'>
+              <Editor
+                defaultLanguage="c"
+                theme="vs-dark"
+                value={codeValue}
+                options={{
+                  selectOnLineNumbers: true
+                }}
+                onChange={(newValue) => setCodeValue(newValue)}
+              />
+            </div>
+            <br />
+            <button className='runbutton' onClick={handleRunClick}>Run</button>
           </div>
-          <div className='coding-pannel'>
-            <Editor
-              defaultLanguage="c"
-              theme="vs-dark"
-              value={codeValue}
-              options={{
-                selectOnLineNumbers: true
-              }}
-              onChange={(newValue) => setCodeValue(newValue)}
-            />
+          <div className='box3'>
+            {showOutputPanel && (
+              <Fragment>
+                <h2 style={{ color: "#7A37F7" }}>Output</h2>
+                <div className='output-pannel'>
+                  <pre className='output-content'>
+                    {output}
+                  </pre>
+                </div>
+              </Fragment>
+            )}
           </div>
-          <br />
-          <button className='runbutton' onClick={handleRunClick}>Run</button>
-          {showOutputPanel && (
-            <Fragment>
-              <h2 style={{ color: "#7A37F7" }}>Output</h2>
-              <div className='output-pannel'>
-                <pre className='output-content'>
-                  {output}
-                </pre>
-              </div>
-            </Fragment>
-          )}
         </div>
       </div>
     </Fragment>

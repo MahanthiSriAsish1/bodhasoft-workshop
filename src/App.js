@@ -24,17 +24,7 @@ function App() {
   }
 
 
-  function getItemWithExpiry(key) {
-    const item = store.get(key);
-    const now = new Date().getTime();
 
-    if (!item || (item._expiry && now > item._expiry)) {
-      store.remove(key);
-      return null;
-    }
-
-    return item.value;
-  }
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('loginAuthenticated');
