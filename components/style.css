@@ -1,0 +1,312 @@
+/* App.css */
+.app {
+    display: flex;
+  }
+  .clik{
+    
+    font-size: 30px;
+    color: whitesmoke;
+    padding-right: 5px;
+    align-content: center;
+    background-color: blueviolet;
+    padding: 5px 10px;
+    border-radius: 4px;
+    position: relative;
+    top: 17px;
+    left: 17px;
+
+
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .sidebar.collapsed {
+    width: 80px; /* Width when collapsed */
+  }
+  
+  .sidebar.expanded {
+    width: 250px; /* Width when expanded */
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .nav.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .nav li {
+    margin: 10px 0;
+  }
+  
+  .nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    display: block;
+  }
+  
+  .nav a:hover {
+    background-color: #575757;
+  }
+  
+  .content {
+    margin-left: 0px; /* Adjust based on the width of your sidebar */
+    padding: 20px;
+    flex: 1;
+  }
+  
+  @media (min-width: 768px) {
+    .sidebar {
+      width: 250px;
+      position: static;
+      height: auto;
+    }
+  
+    .toggle-btn {
+      display: none;
+    }
+  
+    .nav {
+      flex-direction: row;
+      margin-top: 0;
+    }
+  
+    .nav li {
+      margin: 0 10px;
+    }
+  
+    .content {
+      margin-left: 0px; /* Adjust based on the width of your sidebar */
+      padding: 20px;
+      flex: 1;
+    }
+  }
+  
+  
+  
+  .d-box{
+    height: 200px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 30%;
+    border-radius: 10px;
+    margin:10px;
+    background-color: rgba(245, 245, 245, 0.448);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .w-box{
+    height: 200px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 50%;
+    border-radius: 10px;
+    margin:10px;
+    background-color: rgba(245, 245, 245, 0.448);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .d-container{
+    margin: 0;
+      padding: 0;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+    justify-content: space-evenly;
+    /* background-color: rgba(137, 43, 226, 0.038); */
+  }
+  .d-head{
+    font-size: 25px;
+    text-align: center;
+    color: black;
+  }
+  .d-icon{
+    font-size: 50px;
+    position: relative;
+    top: -20px;
+    background-color: blueviolet;
+    padding: 10px;
+    /* color: rgba(0, 0, 0, 0.667); */
+    color:rgb(14, 9, 49) ;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+  }
+  :hover.d-box,:hover.w-box{
+    background-color: blueviolet;
+    transition: 0.2s;
+  .d-icon{
+    font-size: 30px;
+    background-color: whitesmoke;
+    padding-right: 0px;
+    transition: 0.5s;
+  }
+  .d-head{
+    color: whitesmoke;
+  }}
+  
+  @media only screen and (max-width: 800px) {
+    .d-container{
+       flex-direction: column;
+       width: 100%;
+    }
+    .d-box,.w-box{
+        width: 90%;
+    }
+  }
+  
+  
+  
+
+
+  /*              navbar styles                 */
+
+.Navbar {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 10vh;
+  }
+  
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  
+  .username,
+  .logo {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: blueviolet;
+  }
+  
+  .bodhasoft-name {
+    padding-left: 10px;
+    font-size: 35px;
+    color: rgba(156, 67, 240, 0.974);
+    text-shadow: 2px 1px purple;
+  }
+  
+  .username-text {
+    font-size: 20px;
+    color: black;
+    padding-top: 10px;
+    padding-left: 3px;
+   
+    
+  }
+  
+  .user-icon {
+    color: rgba(0, 0, 0, 0.408);
+    padding: 5px;
+    border-radius: 50px;
+    align-items: center;
+    align-content: center;
+    border-color: deeppink;
+    border-width: 2px;
+    border-style: solid;
+    position: relative;
+    bottom: 2.5px;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .Navbar {
+      flex-direction: column;
+      height: auto;
+    }
+      
+    .logo,
+    .username {
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+  
+    .bodhasoft-name {
+      font-size: 35px;
+      font-weight: bold;
+     
+    }
+  
+    .username-text {
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 450px) {
+    .d-container{
+      width: 100%;
+    }
+  }
+
+
+.hover-effect{
+  background-color: whitesmoke;
+}
+.options{
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 10px;
+  margin :20px 5px;
+  font-weight: 500;
+  border-radius: 5px;
+font-size: 20px;
+background-color: whitesmoke;
+}
+:hover.options{
+  /* background-color: blueviolet; */
+  /* color: whitesmoke; */
+  border: 1px solid purple;
+}
+.homebtn{
+background-color: #BB2CD9;
+padding: 5px;
+color: whitesmoke;
+font-size: 20px;
+font-weight: 500;
+border-radius: 5px;
+margin-top: 10px;
+
+}
