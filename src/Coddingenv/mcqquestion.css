@@ -1,0 +1,296 @@
+/* Navbar CSS */
+.Navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+    box-shadow: 0 0 4px grey;
+    background: rgba(253, 247, 255, 1);
+
+  }
+  
+  .timer {
+    margin: auto 0px;
+    font-size: 20px;
+    background-color: pink;
+    padding: 7px;
+    border-radius: 7px;
+  }
+  
+  /* Test Page CSS */
+  .test-page {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .question-tabs {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100vh;
+    background-color: lightgray;
+    border-right: 1px solid #ddd;
+  }
+  
+  .question-number {
+    padding: 5px;
+    margin: 5px;
+    width: 28%;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    background-color: whitesmoke;
+  }
+  .qnumbers{
+  margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  .question-number.active {
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(0, 0, 0, 0.333);
+  }
+  
+  .question-number.submitted {
+    background-color: green; /* green */
+    color: white;
+  }
+  
+  .question-number.not-answered {
+    background-color: red; /* red */
+    color: white;
+  }
+  
+  .question-number.review {
+    background-color: orange; /* orange */
+    color: white;
+  }
+  
+  strong {
+    color: darkblue;
+    font-size: 25px;
+  }
+  
+  .content {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .question-details {
+    width: 50%;
+    padding-right: 20px;
+    overflow-y: auto;
+  }
+  
+  .code-editor {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  
+  textarea {
+    flex-grow: 1;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    overflow-y: auto;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  button {
+    margin: 5px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  label {
+    margin: 10px 0;
+  }
+  
+  .tophead {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.675);
+  }
+  
+  .s1 {
+    display: flex;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .head {
+    color: whitesmoke;
+  }
+  
+  li {
+    padding: 5px;
+  }
+  
+  .runbtn {
+    border: 0;
+    background-color: darkcyan;
+    width: 150px;
+    color: white;
+    padding: 5px 7px;
+    border-radius: 7px;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  
+  .submitbtn {
+    background: #1ECC01;
+    color: white;
+    border: 0;
+    padding: 4px 30px;
+    margin: 8px;
+    font-size: 20px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  
+  .navigationbtns {
+    background-color: blueviolet;
+    border-radius: 4px;
+    width: 30%;
+    border: 1px solid blue;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: 500;
+  }
+  
+  .btngrp {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0px;
+    
+  }
+  .btngroup {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: -105px;
+}
+  .highlight {
+    background-color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 10px 0px;
+    font-family: Cascadia Code;
+  }
+  .terminal {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .outputhead {
+    margin-top: 10px;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+  
+  .option {
+    background: #ECEAF1;
+    border-radius: 12px;
+    padding: 25px;
+    font-size: 20px;
+  }
+  
+  .option:hover {
+    background: #80008033;
+    border-width: 3px;
+    transition: 0.5s;
+    border-style: solid;
+    border-width: purple;
+  }
+  
+  .optiontext {
+    padding-left: 15px;
+  }
+  
+  .question {
+    font-size: 20px;
+  }
+  
+  @media screen and (max-width: 780px) {
+    .content {
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .question-details {
+      width: 100%;
+      overflow: unset;
+    }
+  
+    .code-editor {
+      width: 100%;
+      overflow: unset;
+    }
+  
+    .options {
+      margin-top: 10px;
+    }
+  
+    .question-tabs {
+      width: 50px;
+    }
+  
+    textarea {
+      height: 500px;
+      resize: vertical;
+    }
+    .sidebar {
+      width: 50px;
+
+  }
+  .question-number {
+    width: 80%;
+  }
+  .qnumbers {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-direction: column;
+  }
+  }
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+  
