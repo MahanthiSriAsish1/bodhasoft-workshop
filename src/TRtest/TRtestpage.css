@@ -1,0 +1,253 @@
+/* Navbar CSS */
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0 0 4px grey;
+   
+}
+
+.timer {
+    font-size: 20px;
+    background-color: white;
+    padding: 7px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.241);
+}
+
+/* Test Page CSS */
+.instructionhead{
+    background: whitesmoke;
+    margin: 30px 15px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.instructions{
+    background: whitesmoke;
+    margin: 30px 15px;
+   font-size: 20px;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.test-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100vh;
+    background-color: lightgray;
+    border-right: 1px solid #ddd;
+    display: flex;
+}
+
+.question-tab {
+    padding: 5px;
+    margin: 5px;
+    width: 28%;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    background-color: whitesmoke;
+}
+.qnumber{
+  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.question-tab.active {
+    background-color: white;
+    border: 2px solid rgba(0, 0, 0, 0.333);
+}
+
+.question-tab.submitted {
+    background-color: green;
+    color: white;
+}
+
+.question-tab.not-answered {
+    background-color: red;
+    color: white;
+}
+
+.question-tab.review {
+    background-color: orange;
+    color: white;
+}
+
+strong {
+    color: darkblue;
+    font-size: 30px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.question-info {
+    width: 100%;
+    padding-right: 20px;
+}
+
+.editor-container {
+    width: 100%;
+    display: flex;
+   
+    flex-direction: column;
+    
+}
+
+textarea {
+    flex-grow: 1;
+   border-radius: 5px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    background-color: whitesmoke;
+    color: black;
+    height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    resize: vertical;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+button {
+    margin: 5px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    background-color: darkcyan;
+    color: white;
+    width: 150px;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+
+.nav-btn {
+    background-color: blueviolet;
+    color: whitesmoke;
+    width: 200px;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 5px;
+
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.highlight {
+    background-color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 10px 0;
+    font-family: Cascadia Code;
+}
+
+.terminal {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.output-head {
+    margin-top: 10px;
+}
+
+.answer-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.option {
+    background: #ECEAF1;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.option:hover {
+    background: #80008033;
+    border: 2px solid purple;
+    transition: 0.5s;
+}
+
+.option-text {
+    padding-left: 15px;
+}
+
+.question-text {
+    font-size: 25px;
+}
+
+@media screen and (max-width: 780px) {
+    .main-content {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .question-info, .editor-container {
+        width: 100%;
+    }
+
+    textarea {
+        height: 300px;
+    }
+
+    .sidebar {
+        width: 50px;
+
+    }
+    .question-text {
+        font-size: 20px;
+    }
+    .question-tab{
+        width: 80%;
+    }
+    .qnumber {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 430px) {
+    .nav-btn { 
+        width: 45%;
+    }
+}
