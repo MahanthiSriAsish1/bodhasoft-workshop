@@ -1,0 +1,45 @@
+/* App.css */
+
+.accordion {
+    width: 80%;
+    margin: 20px auto;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+  
+}
+.accordion-item {
+    border-bottom: 1px solid #ddd;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.accordion-item:last-child {
+    border-bottom: none;
+}
+.accordion-header {
+    padding: 16px;
+    margin: 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 10px;
+    font-weight: 400;
+    transition: background-color 0.3s ease;
+}
+.accordion-header:hover {
+    background-color: #4bcefa77;
+}
+.accordion-content {
+    padding: 16px;
+    background-color: white;
+    color: #333;
+    border-radius: 10px;
+    text-align: left;
+}
+.manlogo {
+    width: 20px;
+    height: 20px;
+}
+

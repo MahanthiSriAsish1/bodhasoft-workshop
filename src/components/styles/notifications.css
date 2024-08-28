@@ -1,0 +1,45 @@
+.n-label{
+    text-align: left;
+    font-size: 20px;
+    
+        padding-left: 19px;
+ 
+}
+.n-input{
+    width: 90%;
+   
+}
+.n-textarea{
+    width: 90%;
+    padding: 10px;
+    height: 100px;
+    border-radius: 7px;
+}
+.submitbtn{
+    background-color: blueviolet;
+    border: 0px solid grey;
+    font-size: 16px;
+    font-weight: 550;
+    color: whitesmoke;
+    border-radius: 3px;
+    padding: 7px;
+    width: 25%;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+.notificationform{
+    width: 50%;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+@media only screen and (max-width: 800px) {
+    .n-label{
+        padding-left: 2px;
+    }
+    .submitbtn{
+       margin: auto ;
+       width: 50%;
+position: relative;
+top: 10px;
+    }
+}

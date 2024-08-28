@@ -1,0 +1,89 @@
+
+
+
+
+
+.mcq-container form {
+  display: flex;
+  flex-direction: column;
+ width: 50%;
+}
+
+.mcq-container select, 
+.mcq-container textarea, 
+.mcq-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+.mcq-container select{
+  width: 50%;
+}
+.mcq-container input {
+  width: 47%;
+}
+.mcqoption{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.mcq-container select:focus, 
+.mcq-container textarea:focus, 
+.mcq-container input:focus {
+  border-color: #9b59b6; /* Purple color for focus */
+  outline: none;
+}
+
+.mcq-container textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.mcq-container select {
+  background-color: #f4f2f7;
+}
+.correctanswer{
+  text-align: left;
+}
+.mcq-container button {
+  background-color: #9b59b6; /* Purple color */
+  color: #fff;
+  width: 25%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.mcq-container button:hover {
+  background-color: #8e44ad; /* Slightly darker purple on hover */
+}
+
+.mcq-container p {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Label for the correct choice dropdown */
+.mcq-container label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+  color: #333;
+}
+
+/* Style the error message */
+.mcq-container p[style] {
+  color: #e74c3c; /* Red color for errors */
+  font-weight: bold;
+}
+
+
